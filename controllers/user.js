@@ -79,26 +79,7 @@ module.exports.SIGNUP = async (req, res) => {
   }
 };
 
-module.exports.GET_ALL_USERS_POSTS = async (req, res) => {
-  try {
-    const aggregatedPosts = await UserModel.aggregate([
-      {
-        $lookup: {
-          from: "posts",
-          localField: "createdPosts",
-          foreignField: "id",
-          as: "createdPosts",
-        },
-      },
-      { $match: { id: req.body.userId } },
-    ]).exec();
 
-    res.status(200).json({ user: aggregatedPosts });
-  } catch (err) {
-    console.log("ERR", err);
-    res.status(500).json({ response: "ERROR, please try later" });
-  }
-};
 
 module.exports.GET_USER_BY_ID = async (req, res) => {
   try {
@@ -110,15 +91,3 @@ module.exports.GET_USER_BY_ID = async (req, res) => {
   }
 };
 
-module.exports.UPDATE_USER = async (req, res) => {
-  await TruckModel.updateMany(
-    { id: req.params.id },
-    {
-      $set: {
-        username: req.body.updatedUsername,
-        phone: req.body.updatedPhone,
-      },
-    }
-  );
-  res.status(200).json({ response: "Finished filling" });
-};

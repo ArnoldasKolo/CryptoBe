@@ -5,14 +5,13 @@ const {
   LOGIN,
   SIGNUP,
   GET_USER_BY_ID,
-  GET_ALL_USERS_POSTS,
+  GET_ALL_USERS_FOLLOWS,
   UPDATE_USER,
 } = require("../controllers/user");
 
 router.post("/signUp", SIGNUP);
 router.post("/logIn", LOGIN);
 router.get("/user/:id", GET_USER_BY_ID);
-router.get("/AllUsersPosts",authMiddleware, GET_ALL_USERS_POSTS);
-router.put("/user/info/:id", authMiddleware,UPDATE_USER);
+
 
 module.exports = router;
