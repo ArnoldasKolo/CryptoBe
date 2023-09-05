@@ -66,8 +66,6 @@ module.exports.SIGNUP = async (req, res) => {
           username: req.body.username,
           email:req.body.email,
           password: hash,
-          phone:req.body.phone,
-          createdPosts: [],
         });
 
         await user.save();
@@ -78,16 +76,7 @@ module.exports.SIGNUP = async (req, res) => {
     res.status(500).json({ response: "User was not saved, please try later" });
   }
 };
+ 
 
 
-
-module.exports.GET_USER_BY_ID = async (req, res) => {
-  try {
-    const user = await UserModel.findOne({ id: req.params.id });
-    res.status(200).json({ user: user });
-  } catch (err) {
-    console.log("ERR", err);
-    res.status(500).json({ response: "ERROR, please try later" });
-  }
-};
 
