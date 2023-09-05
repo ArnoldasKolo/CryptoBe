@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/auth");
 const { 
   LOGIN,
   SIGNUP,
-  GET_USER_BY_ID,
+
 } = require("../controllers/user");
 
 router.post("/signUp", SIGNUP);
